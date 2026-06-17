@@ -13,7 +13,7 @@ AI-powered digital accessibility scanner built for the German market, in respons
 
 - [x] Core scanner (Playwright + axe-core), validated against a test fixture and a live production site
 - [x] AI explanation layer (German output, prioritized by impact)
-- [ ] PDF report generation
+- [x] PDF report generation (client-ready, validated visually)
 - [ ] Streamlit UI + deployment
 
 ## Setup
@@ -43,6 +43,14 @@ report = generate_report(result)
 print(report["risk_level"])         # "Hoch" | "Mittel" | "Niedrig"
 print(report["executive_summary"])  # plain-German summary
 print(report["issues"])             # prioritized, explained issues
+```
+
+To generate the final client-ready PDF:
+
+```python
+from pdf_report import create_pdf_report
+
+create_pdf_report(result, report, "bericht.pdf")
 ```
 
 `test_page.html` is a fixture with deliberately broken accessibility (missing alt text, low contrast, unlabeled form elements, etc.) for local testing — serve it with `python -m http.server` and scan `http://localhost:8000/test_page.html`.
