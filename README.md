@@ -14,7 +14,8 @@ AI-powered digital accessibility scanner built for the German market, in respons
 - [x] Core scanner (Playwright + axe-core), validated against a test fixture and a live production site
 - [x] AI explanation layer (German output, prioritized by impact)
 - [x] PDF report generation (client-ready, validated visually)
-- [ ] Streamlit UI + deployment
+- [x] Streamlit UI (validated end-to-end with Playwright, including error states)
+- [ ] Deployment (HuggingFace Spaces, Docker SDK required for headless Chromium)
 
 ## Setup
 
