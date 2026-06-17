@@ -12,7 +12,7 @@ AI-powered digital accessibility scanner built for the German market, in respons
 ## Status
 
 - [x] Core scanner (Playwright + axe-core), validated against a test fixture and a live production site
-- [ ] AI explanation layer (German output, prioritized by impact)
+- [x] AI explanation layer (German output, prioritized by impact)
 - [ ] PDF report generation
 - [ ] Streamlit UI + deployment
 
@@ -32,6 +32,17 @@ from scanner import scan_url
 result = scan_url("https://example.com")
 print(result["summary"])       # {'Kritisch': 2, 'Schwerwiegend': 3, ...}
 print(result["violations"])    # list of detailed findings
+```
+
+To get a prioritized German-language report (requires `ANTHROPIC_API_KEY` as an environment variable):
+
+```python
+from ai_report import generate_report
+
+report = generate_report(result)
+print(report["risk_level"])         # "Hoch" | "Mittel" | "Niedrig"
+print(report["executive_summary"])  # plain-German summary
+print(report["issues"])             # prioritized, explained issues
 ```
 
 `test_page.html` is a fixture with deliberately broken accessibility (missing alt text, low contrast, unlabeled form elements, etc.) for local testing — serve it with `python -m http.server` and scan `http://localhost:8000/test_page.html`.
