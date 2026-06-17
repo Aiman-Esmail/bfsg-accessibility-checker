@@ -1,0 +1,8 @@
+{
+  "name": "bfsg-accessibility-checker",
+  "version": "0.1.0",
+  "description": "Core dependency manifest for the axe-core accessibility engine used by scanner.py",
+  "dependencies": {
+    "axe-core": "^4.12.1"
+  }
+}
