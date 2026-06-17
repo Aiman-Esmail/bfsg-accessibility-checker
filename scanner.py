@@ -15,10 +15,14 @@ import os
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
-# Pfad zur lokal installierten axe-core Bibliothek (via npm install axe-core)
-AXE_CORE_PATH = os.path.join(
+# Pfad zur axe-core Bibliothek. Bevorzugt die im Repo gebuendelte Version
+# (vendor/axe.min.js) - so braucht der Docker-Container kein Node.js/npm.
+# Fallback auf node_modules fuer lokale Entwicklung, falls 'npm install' genutzt wurde.
+_VENDOR_PATH = os.path.join(os.path.dirname(__file__), "vendor", "axe.min.js")
+_NODE_MODULES_PATH = os.path.join(
     os.path.dirname(__file__), "node_modules", "axe-core", "axe.min.js"
 )
+AXE_CORE_PATH = _VENDOR_PATH if os.path.exists(_VENDOR_PATH) else _NODE_MODULES_PATH
 
 # Mapping der axe-core "impact" Stufen auf deutsche Bezeichnungen
 IMPACT_LABELS_DE = {
