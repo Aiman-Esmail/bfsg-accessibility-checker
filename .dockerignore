@@ -1,0 +1,9 @@
+node_modules/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+*.pdf
+preview*.png
+app_screenshot*.png
+test_bericht.pdf
